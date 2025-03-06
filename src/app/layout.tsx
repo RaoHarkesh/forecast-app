@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Topbar from "@/components/topbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,8 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-[100vw] overflow-x-hidden md:cursor-none`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Topbar />
         {children}
       </body>
     </html>
