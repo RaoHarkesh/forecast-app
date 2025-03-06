@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        brown: "#CBA35C",
-        hoverGreen: "#3E7B27",
+        primary: "#72CFFF",
+        secondary: "#0D1419",
       },
       keyframes: {
         zoomOut: {
@@ -20,6 +20,9 @@ export default {
       },
       animation: {
         zoomOut: "zoomOut 2s ease-in-out",
+      },
+      backgroundImage: {
+        widget_border: "linear-gradient(to bottom, blue, #72CFFF)",
       },
     },
   },
