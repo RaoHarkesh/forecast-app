@@ -19,12 +19,36 @@ const Home = () => {
           </div>
           <div className="w-full flex justify-center">
             <div className="w-full overflow-x-auto flex gap-5">
-              <Widget />
-              <Widget />
-              <Widget />
-              <Widget />
-              <Widget />
-              <Widget />
+              <Widget
+                forecastCount={45}
+                foreCastPercentage={65}
+                cityName="City 1"
+              />
+              <Widget
+                forecastCount={45}
+                foreCastPercentage={65}
+                cityName="City 2"
+              />
+              <Widget
+                forecastCount={45}
+                foreCastPercentage={65}
+                cityName="City 3"
+              />
+              <Widget
+                forecastCount={45}
+                foreCastPercentage={65}
+                cityName="City 4"
+              />
+              <Widget
+                forecastCount={45}
+                foreCastPercentage={65}
+                cityName="City 5"
+              />
+              <Widget
+                forecastCount={45}
+                foreCastPercentage={65}
+                cityName="City 6"
+              />
             </div>
           </div>
         </section>
