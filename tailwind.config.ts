@@ -11,6 +11,8 @@ export default {
       colors: {
         primary: "#72CFFF",
         secondary: "#0D1419",
+        dashboardBlue: "#13262F",
+        smallTextGray: "#586369",
       },
       keyframes: {
         zoomOut: {
