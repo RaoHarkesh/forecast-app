@@ -5,6 +5,7 @@ import CarouselDots from "../carousel-dots";
 import Tabs from "../tabs";
 import Image from "next/image";
 import SideMenuItem from "./menuItem";
+import { v4 as uuidv4 } from "uuid";
 
 const tabData = [
   { label: "backlog", id: "0", count: 238 },
@@ -74,7 +75,7 @@ export default function Sidebar() {
   const [collapse, setCollapse] = useState<boolean>(false);
   return (
     <div
-      className={`h-[calc(100vh-50px)] transition-all duration-300  ${
+      className={`h-[calc(100vh-50px)] transition-all duration-300  sticky top-[50px] ${
         collapse ? "w-[100px]" : "w-[320px]"
       } `}
     >
@@ -118,11 +119,11 @@ export default function Sidebar() {
           </div>
         </section>
         <section className="h-[calc(100%-180px)] overflow-auto no-scrollbar">
-          {SidebarData.map((item) => (
-            <>
-              <SideMenuItem key={item.id} item={item} />
+          {SidebarData.map((item, idx) => (
+            <div key={uuidv4()}>
+              <SideMenuItem item={item} />
               <div className="h-[2px] w-full bg-seperator opacity-40" />
-            </>
+            </div>
           ))}
         </section>
       </div>
