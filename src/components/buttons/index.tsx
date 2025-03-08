@@ -1,24 +1,24 @@
 "use client";
 import React from "react";
+import { Button as MuiButton } from "@mui/material";
 
 interface props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   title?: string;
   children?: React.ReactNode;
+  customStyles: string;
 }
 
 export default function Button({
   onClick = () => {},
   title = "",
   children = <></>,
+  customStyles = "",
 }: props) {
   return (
-    <button
-      onClick={onClick}
-      className="p-2 rounded-md text-base flex justify-start items-center bg-primary"
-    >
+    <MuiButton className={`${customStyles}`} variant="contained">
       {title}
       {children}
-    </button>
+    </MuiButton>
   );
 }
