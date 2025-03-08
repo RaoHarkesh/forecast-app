@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { collapseSlice } from "./game";
+import { collapseSlice } from "./collapse";
 
 // Configure the Redux store
 export const store = configureStore({
