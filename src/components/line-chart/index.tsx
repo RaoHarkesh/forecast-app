@@ -40,7 +40,7 @@ const options: ChartOptions<"line"> = {
       },
     },
     y: {
-      beginAtZero: true, // Ensure correct scale handling
+      beginAtZero: true,
       title: {
         display: true,
         text: "CONSUMPTIONS (FT, THOUSANDS)",
