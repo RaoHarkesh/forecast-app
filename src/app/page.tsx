@@ -18,7 +18,7 @@ const Home = () => {
             <Button customStyles="bg-primary">There are 2 action items</Button>
           </div>
           <div className="w-full flex justify-center">
-            <div className="w-full overflow-x-auto flex gap-5">
+            <div className="w-full overflow-x-auto no-scrollbar flex gap-5">
               <Widget
                 forecastCount={45}
                 foreCastPercentage={65}
