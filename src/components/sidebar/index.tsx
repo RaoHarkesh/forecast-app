@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React from "react";
 import CarouselDots from "../carousel-dots";
 import Tabs from "../tabs";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import SideMenuItem from "./menuItem";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/app/store/hooks";
-import { toggleCollapse } from "@/app/store/game";
+import { toggleCollapse } from "@/app/store/collapse";
 import Link from "next/link";
 
 const tabData = [
