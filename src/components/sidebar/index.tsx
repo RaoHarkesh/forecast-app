@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import CarouselDots from "../carousel-dots";
 import Tabs from "../tabs";
 import Image from "next/image";
+import SideMenuItem from "./menuItem";
 
 const tabData = [
   { label: "backlog", id: "0", count: 238 },
@@ -11,12 +12,70 @@ const tabData = [
   { label: "final signoff", id: "2", count: 0 },
 ];
 
+const SidebarData = [
+  {
+    id: "0",
+    fCast: {
+      title: "fcast stab.",
+      up: true,
+    },
+    facc: {
+      title: "fcast acc.",
+      up: true,
+    },
+  },
+  {
+    id: "1",
+    fCast: {
+      title: "fcast stab.",
+      up: true,
+    },
+    facc: {
+      title: "fcast acc.",
+      up: true,
+    },
+  },
+  {
+    id: "2",
+    fCast: {
+      title: "fcast stab.",
+      up: true,
+    },
+    facc: {
+      title: "fcast acc.",
+      up: true,
+    },
+  },
+  {
+    id: "3",
+    fCast: {
+      title: "fcast stab.",
+      up: true,
+    },
+    facc: {
+      title: "fcast acc.",
+      up: true,
+    },
+  },
+  {
+    id: "4",
+    fCast: {
+      title: "fcast stab.",
+      up: true,
+    },
+    facc: {
+      title: "fcast acc.",
+      up: true,
+    },
+  },
+];
+
 export default function Sidebar() {
   const [collapse, setCollapse] = useState<boolean>(false);
   return (
     <div
-      className={`h-[calc(100vh-50px)] transition-all duration-300 ${
-        collapse ? "w-[100px]" : "w-[280px]"
+      className={`h-[calc(100vh-50px)] transition-all duration-300  ${
+        collapse ? "w-[100px]" : "w-[320px]"
       } `}
     >
       <div className="h-full w-full relative bg-dashboardBlue pt-5 px-4">
@@ -57,6 +116,14 @@ export default function Sidebar() {
               <div className="h-[3px] w-1 rounded-md bg-primary mb-[1px]" />
             </div>
           </div>
+        </section>
+        <section className="h-[calc(100%-180px)] overflow-auto no-scrollbar">
+          {SidebarData.map((item) => (
+            <>
+              <SideMenuItem key={item.id} item={item} />
+              <div className="h-[2px] w-full bg-seperator opacity-40" />
+            </>
+          ))}
         </section>
       </div>
     </div>
