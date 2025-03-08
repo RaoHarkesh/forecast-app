@@ -8,6 +8,7 @@ export default function CustomCheckbox() {
     <div>
       <Checkbox
         sx={{
+          paddingY: 0,
           color: "#8E979B", // Default border color
         }}
         {...label}
