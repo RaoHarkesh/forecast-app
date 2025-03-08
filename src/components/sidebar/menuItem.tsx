@@ -1,6 +1,7 @@
 import Image from "next/image";
 import CustomCheckbox from "../checkbox";
 import Button from "../buttons";
+import { motion } from "framer-motion";
 
 interface Props {
   item: {
@@ -13,17 +14,26 @@ interface Props {
       title: string;
       up: boolean;
     };
+    collapse: boolean;
   };
 }
 
 export default function SideMenuItem({ item }: Props) {
   return (
-    <div className="flex py-8 w-full">
+    <div className={`flex py-8 w-full `}>
       <div className="w-fit">
         <CustomCheckbox />
       </div>
       <div className="flex-1 flex gap-1">
-        <div className="flex flex-col gap-2 ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: item.collapse ? 0.2 : 2 }}
+          className={`flex flex-col gap-2  ${
+            item.collapse ? "hidden" : "block"
+          }`}
+        >
           <Button customStyles="!bg-greywhite !text-black !text-[10px] !font-bold w-fit !py-[1px] !px-[5px]">
             <div className="flex gap-1">
               <Image
@@ -38,9 +48,20 @@ export default function SideMenuItem({ item }: Props) {
           <span className="text-sideTabGray text-[10px] font-bold uppercase">
             Sample stack
           </span>
-        </div>
-        <div className="flex flex-col gap-2 ">
-          <Button customStyles="!bg-greywhite !text-black !text-[10px] !font-bold w-fit !py-[1px] !px-[5px]">
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: item.collapse ? 0.2 : 2 }}
+          className={`flex flex-col gap-2  ${
+            item.collapse ? "hidden" : "block"
+          }`}
+        >
+          <Button
+            customStyles={`!bg-greywhite !text-black !text-[10px] !font-bold w-fit !py-[1px] !px-[5px] `}
+          >
             <div className="flex gap-1">
               <Image
                 src={"/icons/up-arrow.png"}
@@ -51,7 +72,7 @@ export default function SideMenuItem({ item }: Props) {
               <span className="uppercase">{item.facc.title}</span>
             </div>
           </Button>
-        </div>
+        </motion.div>
       </div>
       <div className="w-fit">
         <Image src={"/icons/mail-icon.png"} alt="mail" height={20} width={20} />
