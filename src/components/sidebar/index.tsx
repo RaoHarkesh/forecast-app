@@ -108,7 +108,7 @@ export default function Sidebar() {
         </Link>
         <section>
           <div className="mb-2">
-            <CarouselDots />
+            <CarouselDots dots={[{ id: "0" }, { id: "1" }, { id: "2" }]} />
           </div>
           <span className="text-white text-base mb-3">Sample Stack</span>
 
@@ -133,7 +133,7 @@ export default function Sidebar() {
           </div>
         </section>
         <section className="h-[calc(100%-180px)] overflow-auto no-scrollbar">
-          {SidebarData.map((item, idx) => (
+          {SidebarData.map((item) => (
             <div key={uuidv4()}>
               <SideMenuItem item={{ ...item, collapse }} />
               <div className="h-[2px] w-full bg-seperator opacity-40" />

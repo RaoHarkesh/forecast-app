@@ -4,15 +4,13 @@ interface Dotprops {
   id: string;
 }
 
+interface props {
+  dots: Array<Dotprops>;
+}
+
 import { useState } from "react";
 
-export default function CarouselDots() {
-  const [dots, setDots] = useState<Array<Dotprops>>([
-    { id: "1" },
-    { id: "2" },
-    { id: "3" },
-    { id: "4" },
-  ]);
+export default function CarouselDots({ dots }: props) {
   const [active, setActive] = useState("2");
   return (
     <div className="flex gap-2 w-full">

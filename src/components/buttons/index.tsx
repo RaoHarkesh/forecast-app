@@ -10,7 +10,6 @@ interface props {
 }
 
 export default function Button({
-  onClick = () => {},
   title = "",
   children = <></>,
   customStyles = "",

@@ -131,6 +131,20 @@ const data = {
   ],
 };
 
+type TableRow = {
+  title: string;
+  id: string;
+  data1: number | null;
+  data2: number | null;
+  data3: number | null;
+  data4: number | null;
+  data5: number | null;
+  data6: number | null;
+  data7: number | null;
+  data8: number | null;
+  data9: number | null;
+};
+
 const tableData = [
   {
     title: "Data 1",
@@ -390,7 +404,7 @@ export default function DetailsPageModule() {
             </tr>
           </thead>
           <tbody>
-            {tableDataIdLoad.map((row: any, idx) => (
+            {tableDataIdLoad.map((row: TableRow, idx) => (
               <>
                 <tr
                   key={row.id}
@@ -402,7 +416,7 @@ export default function DetailsPageModule() {
                   {Object.keys(row)
                     .filter((rowf) => rowf !== "id")
                     .map((col) => (
-                      <td key={col}>{row[col]}</td>
+                      <td key={col}>{row[col as keyof TableRow]}</td>
                     ))}
                 </tr>
               </>
