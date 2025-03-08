@@ -18,6 +18,8 @@ export default {
         topbarLightGray: "#667881",
         topbarlightblue: "#193D4E",
         greywhite: "#ECEEEE",
+        sidebutton: "#8F8E8E",
+        seperator: "#424F56",
       },
       keyframes: {
         zoomOut: {
