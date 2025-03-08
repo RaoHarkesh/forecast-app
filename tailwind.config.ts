@@ -5,6 +5,7 @@ export default {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/modules/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -13,6 +14,10 @@ export default {
         secondary: "#0D1419",
         dashboardBlue: "#13262F",
         smallTextGray: "#586369",
+        sideTabGray: "#999C9E",
+        topbarLightGray: "#667881",
+        topbarlightblue: "#193D4E",
+        greywhite: "#ECEEEE",
       },
       keyframes: {
         zoomOut: {
