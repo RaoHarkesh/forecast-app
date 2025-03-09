@@ -1,10 +1,13 @@
+"use client";
 import Image from "next/image";
 import CustomSwitch from "@/components/switch/index";
 import CustomPopover from "@/components/popup";
 import AntSwitch from "@/components/ant-switch";
 import LineChart from "@/components/line-chart";
-import { v4 as uuidv4 } from "uuid";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { fetchChartData } from "@/app/store/detailsSlice/details";
+import { CircularProgress } from "@mui/material";
 
 const data = {
   labels: [
@@ -245,13 +248,19 @@ const tableData = [
 ];
 
 export default function DetailsPageModule() {
-  const tableDataIdLoad = useMemo(
-    () =>
-      tableData.map((obj) => {
-        return { ...obj, id: uuidv4() };
-      }),
-    []
+  const dispatch = useAppDispatch();
+  const { loading, chartData, tableData } = useAppSelector(
+    (state) => state.detailsData
   );
+
+  const handleFetchData = (id: number) => {
+    dispatch(fetchChartData(id));
+  };
+
+  useEffect(() => {
+    handleFetchData(0);
+  }, []);
+
   return (
     <div className="">
       <div className="sticky top-[50px] z-[5]">
@@ -326,104 +335,112 @@ export default function DetailsPageModule() {
         </div>
       </div>
       {/* sticky topbar ends here */}
-      <div className="flex px-10 py-4 gap-10 items-center">
-        <span className="text-base text-sideTabGray">Forcast Horizon</span>
-        <div>
-          <CustomPopover
-            actionElement={
-              <div className="flex gap-2">
-                <span className="uppercase text-sm text-sideTabGray font-bold">
-                  Latest issue
-                </span>
-                <Image
-                  src={"/icons/down-arrow.png"}
-                  alt="down"
-                  width={25}
-                  height={25}
-                />
-              </div>
-            }
-          >
-            <div className="bg-white rounded-lg p-2 h-[50px] w-[100px]"></div>
-          </CustomPopover>
+      {loading ? (
+        <div className="w-full h-[400px] flex justify-center items-center">
+          <CircularProgress />
         </div>
-        <Image
-          src={"/icons/info-icon.png"}
-          alt=""
-          width={30}
-          height={30}
-          className=""
-        />
-        <AntSwitch
-          element={
-            <span className="uppercase text-sm font-bold text-sideTabGray">
-              show confidence interval
-            </span>
-          }
-        ></AntSwitch>
-      </div>
-      <div className="px-10 py-4 flex gap-10">
-        <AntSwitch
-          element={
-            <div className="flex items-center gap-1">
-              <div className="h-[10px] rounded-md w-1 bg-green-400" />
-              <span className="uppercase text-sm font-bold text-sideTabGray">
-                AI forecast
-              </span>
+      ) : (
+        <>
+          <div className="flex px-10 py-4 gap-10 items-center">
+            <span className="text-base text-sideTabGray">Forcast Horizon</span>
+            <div>
+              <CustomPopover
+                actionElement={
+                  <div className="flex gap-2">
+                    <span className="uppercase text-sm text-sideTabGray font-bold">
+                      Latest issue
+                    </span>
+                    <Image
+                      src={"/icons/down-arrow.png"}
+                      alt="down"
+                      width={25}
+                      height={25}
+                    />
+                  </div>
+                }
+              >
+                <div className="bg-white rounded-lg p-2 h-[50px] w-[100px]"></div>
+              </CustomPopover>
             </div>
-          }
-        />
-        <AntSwitch
-          element={
-            <div className="flex items-center gap-1">
-              <div className="h-[10px] rounded-md w-1 bg-yellow-300" />
-              <span className="uppercase text-sm font-bold text-sideTabGray">
-                final forecast
-              </span>
-            </div>
-          }
-        />
-      </div>
-      <div className="w-full h-[300px] md:h-[500px] xl:[500px] 2xl:h-[600px] px-4 relative mb-4">
-        <LineChart data={data} />
-      </div>
-      <div className="w-full px-10">
-        <table className="w-full text-sideTabGray capitalize text-sm font-semibold">
-          <thead className="bg-topbarLightGray bg-opacity-20">
-            <tr className="w-full">
-              <td className="w-1/3">Data</td>
-              <td>Col2</td>
-              <td>Col3</td>
-              <td>Col4</td>
-              <td>Col5</td>
-              <td>Col6</td>
-              <td>Col7</td>
-              <td>Col8</td>
-              <td>Col9</td>
-              <td>Col10</td>
-            </tr>
-          </thead>
-          <tbody>
-            {tableDataIdLoad.map((row: TableRow, idx) => (
-              <>
-                <tr
-                  key={row.id}
-                  className={`h-[50px] ${
-                    idx < tableDataIdLoad.length &&
-                    "border-b-[1px] border-seperator"
-                  }`}
-                >
-                  {Object.keys(row)
-                    .filter((rowf) => rowf !== "id")
-                    .map((col) => (
-                      <td key={col}>{row[col as keyof TableRow]}</td>
-                    ))}
+            <Image
+              src={"/icons/info-icon.png"}
+              alt=""
+              width={30}
+              height={30}
+              className=""
+            />
+            <AntSwitch
+              element={
+                <span className="uppercase text-sm font-bold text-sideTabGray">
+                  show confidence interval
+                </span>
+              }
+            ></AntSwitch>
+          </div>
+          <div className="px-10 py-4 flex gap-10">
+            <AntSwitch
+              element={
+                <div className="flex items-center gap-1">
+                  <div className="h-[10px] rounded-md w-1 bg-green-400" />
+                  <span className="uppercase text-sm font-bold text-sideTabGray">
+                    AI forecast
+                  </span>
+                </div>
+              }
+            />
+            <AntSwitch
+              element={
+                <div className="flex items-center gap-1">
+                  <div className="h-[10px] rounded-md w-1 bg-yellow-300" />
+                  <span className="uppercase text-sm font-bold text-sideTabGray">
+                    final forecast
+                  </span>
+                </div>
+              }
+            />
+          </div>
+          <div className="w-full h-[300px] md:h-[500px] xl:[500px] 2xl:h-[600px] px-4 relative mb-4">
+            <LineChart data={chartData} />
+          </div>
+          <div className="w-full px-10">
+            <table className="w-full text-sideTabGray capitalize text-sm font-semibold">
+              <thead className="bg-topbarLightGray bg-opacity-20">
+                <tr className="w-full">
+                  <td className="w-1/3">Data</td>
+                  <td>Col2</td>
+                  <td>Col3</td>
+                  <td>Col4</td>
+                  <td>Col5</td>
+                  <td>Col6</td>
+                  <td>Col7</td>
+                  <td>Col8</td>
+                  <td>Col9</td>
+                  <td>Col10</td>
                 </tr>
-              </>
-            ))}
-          </tbody>
-        </table>
-      </div>
+              </thead>
+              <tbody>
+                {tableData.map((row: TableRow, idx) => (
+                  <>
+                    <tr
+                      key={row.id}
+                      className={`h-[50px] ${
+                        idx < tableData.length &&
+                        "border-b-[1px] border-seperator"
+                      }`}
+                    >
+                      {Object.keys(row)
+                        .filter((rowf) => rowf !== "id")
+                        .map((col) => (
+                          <td key={col}>{row[col as keyof TableRow]}</td>
+                        ))}
+                    </tr>
+                  </>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 }
