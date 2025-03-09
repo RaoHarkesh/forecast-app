@@ -85,7 +85,7 @@ export default function Sidebar() {
           </section>
         </div>
         <section className="h-[calc(100%-180px)] overflow-auto no-scrollbar">
-          {sidebarData.map((item, index) => (
+          {sidebarData.map((item) => (
             <div key={uuidv4()}>
               <SideMenuItem item={{ ...item, collapse }} />
               <div className="h-[2px] w-full bg-seperator opacity-40" />
