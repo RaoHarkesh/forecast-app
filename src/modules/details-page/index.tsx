@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { fetchChartData } from "@/app/store/detailsSlice/details";
 import { CircularProgress } from "@mui/material";
+import { setActiveSidebar } from "@/app/store/sidebar";
 
 type TableRow = {
   title: string;
@@ -35,6 +36,9 @@ export default function DetailsPageModule() {
 
   useEffect(() => {
     handleFetchData(0);
+    return () => {
+      dispatch(setActiveSidebar("0"));
+    };
   }, []);
 
   return (
