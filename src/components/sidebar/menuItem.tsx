@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { setActiveSidebar } from "@/app/store/sidebar";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { fetchChartData } from "@/app/store/detailsSlice/details";
+import { useWindowSize } from "@/utils/useWindowSize";
+import { toggleCollapse } from "@/app/store/collapse";
 
 interface Props {
   item: {
@@ -25,7 +27,13 @@ export default function SideMenuItem({ item }: Props) {
   const dispatch = useAppDispatch();
   const active = useAppSelector((state) => state.sidebarData.active);
 
+  const width = useWindowSize();
+  const isMobile = width < 640;
+
   const handleClick = async () => {
+    if (isMobile) {
+      dispatch(toggleCollapse());
+    }
     dispatch(setActiveSidebar(item.id));
     if (active !== item.id) dispatch(fetchChartData(Number(item.id)));
   };

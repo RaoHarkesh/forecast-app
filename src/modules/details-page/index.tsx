@@ -38,8 +38,8 @@ export default function DetailsPageModule() {
   }, []);
 
   return (
-    <div className="">
-      <div className="sticky top-[50px] z-[5]">
+    <div className="min-h-screen">
+      <div className="hidden sm:block sticky top-[50px] z-[5]">
         <div className="hidden w-full mb-2 bg-dashboardBlue md:flex items-center  px-10 py-2">
           <div className="flex gap-2 items-center pr-14">
             <Image
@@ -117,7 +117,7 @@ export default function DetailsPageModule() {
         </div>
       ) : (
         <>
-          <div className="flex px-10 py-4 gap-10 items-center">
+          <div className="hidden sm:flex px-10 py-4 gap-10 items-center">
             <span className="text-base text-sideTabGray">Forcast Horizon</span>
             <div>
               <CustomPopover
@@ -178,8 +178,8 @@ export default function DetailsPageModule() {
           <div className="w-full h-[300px] md:h-[500px] xl:[500px] 2xl:h-[600px] px-4 relative mb-4">
             <LineChart data={chartData} />
           </div>
-          <div className="w-full px-10">
-            <table className="w-full text-sideTabGray capitalize text-sm font-semibold">
+          <div className="overflow-x-auto w-[100vw] sm:w-full px-10">
+            <table className="w-[200vw] sm:w-full text-sideTabGray capitalize text-sm font-semibold">
               <thead className="bg-topbarLightGray bg-opacity-20">
                 <tr className="w-full">
                   <td className="w-1/3">Data</td>

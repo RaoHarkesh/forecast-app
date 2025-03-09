@@ -7,7 +7,7 @@ export default function Topbar() {
       <div className="flex items-center gap-2">
         <MenuToggle />
         <Link href={"/"}>
-          <span className="text-white text-base">WebApp</span>
+          <span className="hidden lg:block text-white text-base">WebApp</span>
         </Link>
       </div>
       <div className="flex items-center gap-2">
