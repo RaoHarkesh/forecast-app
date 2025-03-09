@@ -42,19 +42,22 @@ const initialState: DetailsState = {
   loading: false,
   error: null,
 };
-
 export const fetchChartData = createAsyncThunk(
   "fetchChartData",
   async (id: number, { rejectWithValue }) => {
     try {
-      await new Promise((res) => {
+      await new Promise<void>((resolve) => {
         setTimeout(() => {
-          res("resolved");
+          resolve();
         }, 1000);
       });
+
       return chartDataArray[id];
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
