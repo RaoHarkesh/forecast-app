@@ -5,6 +5,7 @@ import { Chart } from "react-google-charts";
 export const data = [
   ["Country", "Popularity"],
   ["Brazil", 800],
+  ["India", 400],
 ];
 
 const options = {
