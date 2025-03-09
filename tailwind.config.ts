@@ -20,6 +20,7 @@ export default {
         greywhite: "#ECEEEE",
         sidebutton: "#8F8E8E",
         seperator: "#424F56",
+        selectblue: "#1A78B7",
       },
       keyframes: {
         zoomOut: {
