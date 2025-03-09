@@ -27,7 +27,7 @@ export default function SideMenuItem({ item }: Props) {
 
   const handleClick = async () => {
     dispatch(setActiveSidebar(item.id));
-    dispatch(fetchChartData(Number(item.id)));
+    if (active !== item.id) dispatch(fetchChartData(Number(item.id)));
   };
 
   return (
