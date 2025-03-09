@@ -2,6 +2,11 @@ import Image from "next/image";
 import CustomCheckbox from "../checkbox";
 import Button from "../buttons";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { setActiveSidebar } from "@/app/store/sidebar";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { fetchChartData } from "@/app/store/detailsSlice/details";
+import { useEffect } from "react";
 
 interface Props {
   item: {
@@ -19,8 +24,26 @@ interface Props {
 }
 
 export default function SideMenuItem({ item }: Props) {
+  const dispatch = useAppDispatch();
+  const active = useAppSelector((state) => state.sidebarData.active);
+
+  const handleClick = async () => {
+    dispatch(setActiveSidebar(item.id));
+  };
+
+  useEffect(() => {
+    if (active) {
+      dispatch(fetchChartData(Number(active)));
+    }
+  }, [active]);
+
   return (
-    <div className={`flex py-8 w-full `}>
+    <div
+      className={`flex py-8 w-full cursor-pointer box-border transition-colors duration-200 ${
+        active === item.id && "border-2 border-selectblue bg-[#4A5960]"
+      }`}
+      onClick={handleClick}
+    >
       <div className="w-fit">
         <CustomCheckbox />
       </div>
