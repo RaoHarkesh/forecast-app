@@ -9,9 +9,9 @@ export const data = [
 
 const options = {
   backgroundColor: "#11262F",
-  colorAxis: { colors: ["#183F51", "#346B77"] }, // Gradient for countries
-  datalessRegionColor: "#193D4E", // Color for regions with no data
-  defaultColor: "#346B77", // Default country color
+  colorAxis: { colors: ["#183F51", "#346B77"] },
+  datalessRegionColor: "#193D4E",
+  defaultColor: "#346B77",
 };
 
 export default function WorldMap() {
