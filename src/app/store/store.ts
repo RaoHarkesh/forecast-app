@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { collapseSlice } from "./collapse";
 import { sidebarSlice } from "./sidebar";
 import { chartDetailSlice } from "./detailsSlice/details";
+import { widgetSlice } from "./widgets";
 
 // Configure the Redux store
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     collapseData: collapseSlice.reducer,
     sidebarData: sidebarSlice.reducer,
     detailsData: chartDetailSlice.reducer,
+    widgetData: widgetSlice.reducer,
   },
 });
 
