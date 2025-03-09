@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { collapseSlice } from "./collapse";
+import { sidebarSlice } from "./sidebar";
+import { chartDetailSlice } from "./detailsSlice/details";
 
 // Configure the Redux store
 export const store = configureStore({
   reducer: {
     collapseData: collapseSlice.reducer,
+    sidebarData: sidebarSlice.reducer,
+    detailsData: chartDetailSlice.reducer,
   },
 });
 
